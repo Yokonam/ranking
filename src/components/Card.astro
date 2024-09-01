@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+	title: string;
+	body: string;
+}
+
+const {title, body } = Astro.props;
+---
+
+<li class="link-card">
+  <div class="img">
+    <img src="https://lh3.googleusercontent.com/TZp-8loN1-32xyh3aTkLqqFaUdtf5X-KEhY6p7cN_hRruXeMPqPZK_Hj3mnHYggGYtK5gAprwzep4r08ow" alt="燈" />
+  </div>
+  <p class="rank">1位</p>
+  <div class="body">
+    <p class="title">燈</p>
+    <p class="artist">崎山蒼志</p>
+  </div>
+</li>
+<style>
+  .link-card{
+    background: rgb(40, 40, 40);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 400px;
+    font-weight: 900;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+  }
+  .img{
+    width: 100%;
+    height: 400px;
+    aspect-ratio: 1;
+  }
+
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  p{
+    margin: 0;
+  }
+  .rank{
+    text-align: center;
+    width: 100%;
+    font-size: 3rem;
+    color: #000;
+    background-color: gray;
+  }
+  .body{
+    padding: 1rem;
+    text-align: center;
+    color: #fff;
+    font-size: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+</style>
