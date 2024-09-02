@@ -5,12 +5,16 @@ import Card from '../components/Card.astro';
 
 <Layout title="「本日のおすすめ曲」人気曲ランキング2024">
 	<main>
-    <h1>「本日のおすすめ曲」人気曲ランキング2024</h1>
+    <!-- <h1>「本日のおすすめ曲」人気曲ランキング2024</h1>
     <ul class="card-list">
       <Card />
-    </ul>
+    </ul> -->
+    <audio id="bgm" loop>
+      <source src="assets/audio/bgm.mp3" type="audio/mp3">
+    </audio>
 
-
+  <button id="play">再生</button>
+  <button id="pause">停止</button>
 	</main>
 </Layout>
 
@@ -44,3 +48,18 @@ import Card from '../components/Card.astro';
     height: 100%;
   }
 </style>
+<script>
+  const bgm = document.getElementById('bgm') as HTMLAudioElement;
+
+  const playButton = document.getElementById('play') as HTMLButtonElement;
+  const pauseButton = document.getElementById('pause') as HTMLButtonElement;
+
+  playButton.addEventListener('click', function() {
+      bgm.play();
+  });
+
+  pauseButton.addEventListener('click', function() {
+      bgm.pause();
+      bgm.currentTime = 0;
+  });
+</script>
