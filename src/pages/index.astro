@@ -1,25 +1,89 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+
+const items = [
+  {
+    title: '燈',
+    artist: '崎山蒼志',
+    img: 'https://lh3.googleusercontent.com/TZp-8loN1-32xyh3aTkLqqFaUdtf5X-KEhY6p7cN_hRruXeMPqPZK_Hj3mnHYggGYtK5gAprwzep4r08ow',
+    href: "https://music.youtube.com/watch?v=yFRNB8Jji4Y&si=nT4Oy47E1C-Cevpd"
+  },
+  {
+    title: 'Hey boy!',
+    artist: '片平里菜',
+    img: 'https://lh3.googleusercontent.com/sQE5vKIXAgcySinWHhnM5wih3JjnFDxMi9BEiCqpkSeV6qKJzSgb69YTDOn8WwfDackXT2MQnHI0da8',
+    href: 'https://music.youtube.com/watch?v=68_STLaWvOA&si=c3n5GkYi-4dRfolc'
+  },
+  {
+    title: 'sabio',
+    artist: 'てにをは',
+    img: 'https://i.ytimg.com/vi/aH_yxdoiP6o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mXXc-qjJrDEBaq7J7P1mAs7hXo4w',
+    href: 'https://music.youtube.com/watch?v=aH_yxdoiP6o&si=WGNfSwCC0-Vqbmfg'
+  },
+  {
+    title: 'カナヅチ',
+    artist: 'hockrockb',
+    img: 'https://lh3.googleusercontent.com/5-PMC-cvQFwZtFh1gHpcUbNWblFL5gSOUHyQ6ZEytrtXaQrkV8IlirDJHFRBF5gBOBssAT_Xi6DUQ4cRTQ',
+    href: 'https://music.youtube.com/watch?v=URtGnPw-lpw&si=312RZAC3AnrYF8Wb'
+  },
+  {
+    title: 'ナイトルーティン',
+    artist: 'キタニタツヤ',
+    img: 'https://lh3.googleusercontent.com/Cn0EIPwf8nq8VhSSRfgN5Da8pQ5edHcNz6W7_C6vLorwyMHcJIi3BphfsuvpT9tC57aoXZqMhGmbJpU',
+    href: 'https://music.youtube.com/watch?v=CRwGzvNJpgE&si=qC3vYzVZrm-IUBpd'
+  },
+  {
+    title: 'いばら',
+    artist: 'Ado',
+    img: 'https://lh3.googleusercontent.com/9WhR2UGFZHNqb0aEGm4yHftxx5k9o-9S1zD18dm_DXSkBNab2yMCFCz7BBjNiB3q5mheiJuxK-WgGDvo',
+    href: 'https://music.youtube.com/watch?v=KWCX4YfxlP0&si=-jWidhej6bOZBE9i'
+  },
+  {
+    title: '私的なサルベイション',
+    artist: '暗月 feat. CONOMI',
+    img: 'https://lh3.googleusercontent.com/QtVqee1VehHVanI_oXmHRdGzcqriAnyBW209Ae-hZYo_m4YW80YvL-lUnHOYOM0Ws0ciOvvn0yRsF1KT',
+    href: 'https://music.youtube.com/watch?v=1ls1yNAIQJI&si=ZJi5D53Y7CVfFWWQ'
+  },
+  {
+    title: '初',
+    artist: '初星学園',
+    img: 'https://lh3.googleusercontent.com/cy3-3JvrFw_GzVlHh7s_S1jVLIhfhoib76Y_FcXohoOIyf6q_4IhStNmjYmTFR45uySKuUu56MSh7yhdSw',
+    href: 'https://music.youtube.com/watch?v=w-3PTQLwj4w&si=xbvkDfc_e0OOAshx',
+  },
+  {
+    title: '普遍',
+    artist: 'ano',
+    img: 'https://lh3.googleusercontent.com/W22xQoIdhumrygBTu8cvWDjt4SEl-c9bC-2phLDDVzeuGnHkSxl0bB9jsAH_5D5N92jOnAMVAqTHB0M',
+    href: 'https://music.youtube.com/watch?v=LYhyY7wCxjE&si=cUVRTc-MEEPerTwu'
+  }
+]
 ---
 
 <Layout title="「本日のおすすめ曲」人気曲ランキング2024">
-	<main>
-    <!-- <h1>「本日のおすすめ曲」人気曲ランキング2024</h1>
-    <ul class="card-list">
-      <Card />
-    </ul> -->
-    <audio id="bgm" loop>
-      <source src="assets/audio/bgm.mp3" type="audio/mp3">
-    </audio>
-
-  <button id="play">再生</button>
-  <button id="pause">停止</button>
+	<main style=`--num: ${items.length};`>
+    <div></div>
+    <h1>「本日のおすすめ曲」<br>人気曲ランキング2024</h1>
+    <ul class="card-list" data-state="paused">
+      {items.map(({title, artist, img, href}) => (
+        <Card title={title} artist={artist} img={img} href={href} />
+      ))}
+    </ul>
+    <strong class="thx" data-state="paused">投票ありがとうございました😁👍</strong>
+    <div class="cover">
+      <audio id="bgm" loop>
+        <source src="assets/audio/bgm.mp3" type="audio/mp3">
+      </audio>
+      <Button  id="play"/>
+    <!-- <button id="pause">停止</button> -->
+    </div>
 	</main>
 </Layout>
 
 <style>
 	main {
+    --time: calc(var(--num) * 12s);
 		margin: auto;
 		padding: 1rem;
 		color: white;
@@ -27,39 +91,88 @@ import Card from '../components/Card.astro';
 		line-height: 1.6;
     height: 100%;
     display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
     place-items: center;
 	}
 	h1 {
-		font-size: 4rem;
+		font-size: 6rem;
 		font-weight: 700;
-		line-height: 1;
 		text-align: center;
-		margin-bottom: 1em;
+		margin: 0;
 	}
-
   ul{
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     list-style: '';
     margin: 0;
     padding: 0;
     display: flex;
     height: 100%;
+    animation: slide var(--time) linear infinite;
+    transform: translateX(0);
+    z-index: 1;
+  }
+  .cover{
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+  }
+  .thx{
+    animation: thx var(--time) linear;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+  [data-state="paused"] {
+    animation-play-state: paused;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes thx {
+    0% {
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 </style>
 <script>
-  const bgm = document.getElementById('bgm') as HTMLAudioElement;
+  const cover = document.querySelector('.cover') as HTMLDivElement;
+  const bgm = cover.querySelector('#bgm') as HTMLAudioElement;
+  const animetionElement = document.querySelectorAll("[data-state]") as NodeListOf<HTMLElement>;
 
-  const playButton = document.getElementById('play') as HTMLButtonElement;
-  const pauseButton = document.getElementById('pause') as HTMLButtonElement;
+  const playButton = cover.querySelector('.play') as HTMLButtonElement;
 
   playButton.addEventListener('click', function() {
-      bgm.play();
-  });
-
-  pauseButton.addEventListener('click', function() {
-      bgm.pause();
-      bgm.currentTime = 0;
+      if (bgm.paused) {
+          bgm.play();
+          animetionElement.forEach((element) => {
+            element.setAttribute('data-state', '');
+          });
+      } else {
+          bgm.pause();
+          animetionElement.forEach((element) => {
+            element.setAttribute('data-state', 'paused');
+          });
+      }
   });
 </script>
