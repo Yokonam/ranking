@@ -26,7 +26,7 @@ const {title, img, artist, href } = Astro.props;
   .link-card{
     background: rgb(40, 40, 40);
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 450px;
+    width:  calc(400/ var(--contet-width) * 100vw);
     font-weight: 900;
     border: solid 2px #000;
   }
@@ -34,14 +34,15 @@ const {title, img, artist, href } = Astro.props;
     display: block;
   }
 
-
   a{
-    transition: opacity 0.3s;
-    display: block;
+    transition: filter 0.3s;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
+    height: 100%;
   }
   a:hover{
-    opacity: 0.8;
+    filter: brightness(1.2);
   }
 
   img{
@@ -57,25 +58,35 @@ const {title, img, artist, href } = Astro.props;
   .rank{
     text-align: center;
     width: 100%;
-    font-size: 3rem;
+    font-size: calc(48/ var(--contet-width) * 100vw);
     color: #000;
     background-color: rgb(192, 192, 192);
   }
   .body{
-    padding: 1rem;
+    padding: calc(10/ var(--contet-width) * 100vw);
     text-align: center;
     color: #fff;
-    font-size: 4rem;
+    font-size: calc(40/ var(--contet-width) * 100vw);
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex-grow: 1;
+    padding-bottom: calc(70/ var(--contet-width) * 100vw);
   }
   .title{
-    font-size: 4rem;
+    font-size: calc(64/ var(--contet-width) * 100vw);
+    line-height: 1.2;
   }
   .artist{
-    font-size: 3rem;
+    font-size: calc(48/ var(--contet-width) * 100vw);
+    margin-top: calc(10/ var(--contet-width) * 100vw);
+  }
+
+  @media (max-width: 768px){
+      .link-card{
+      width: 100vw;
+    }
   }
 </style>

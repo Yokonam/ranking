@@ -75,19 +75,26 @@ const items = [
       <audio id="bgm" loop>
         <source src="assets/audio/bgm.mp3" type="audio/mp3">
       </audio>
-      <Button  id="play"/>
-    <!-- <button id="pause">停止</button> -->
+      <Button/>
     </div>
 	</main>
 </Layout>
 
 <style>
+    :root{
+      --contet-width: 1600;
+    }
+  @media (orientation: portrait) {
+    :root{
+      --contet-width: 768;
+    }
+  }
 	main {
     --time: calc(var(--num) * 12s);
 		margin: auto;
 		padding: 1rem;
 		color: white;
-		font-size: 20px;
+		font-size: calc(20/ var(--contet-width) * 100vw);
 		line-height: 1.6;
     height: 100%;
     display: grid;
@@ -95,7 +102,7 @@ const items = [
     place-items: center;
 	}
 	h1 {
-		font-size: 6rem;
+		font-size: calc(60/ var(--contet-width) * 100vw);
 		font-weight: 700;
 		text-align: center;
 		margin: 0;
@@ -116,7 +123,7 @@ const items = [
   .cover{
     width: 100%;
     height: 100%;
-    padding: 1rem;
+    padding:calc(10/ var(--contet-width) * 100vw);
   }
   .thx{
     animation: thx var(--time) linear;
@@ -142,7 +149,7 @@ const items = [
       opacity: 0;
     }
 
-    10% {
+    30% {
       opacity: 0;
     }
 
@@ -165,11 +172,13 @@ const items = [
   playButton.addEventListener('click', function() {
       if (bgm.paused) {
           bgm.play();
+          playButton.setAttribute('data-play', 'true');
           animetionElement.forEach((element) => {
             element.setAttribute('data-state', '');
           });
       } else {
           bgm.pause();
+          playButton.removeAttribute('data-play');
           animetionElement.forEach((element) => {
             element.setAttribute('data-state', 'paused');
           });
