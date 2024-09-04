@@ -17,8 +17,8 @@ const items = [
     href: 'https://music.youtube.com/watch?v=68_STLaWvOA&si=c3n5GkYi-4dRfolc'
   },
   {
-    title: 'sabio',
-    artist: 'てにをは',
+    title: 'てにをは',
+    artist: 'sabio',
     img: 'https://i.ytimg.com/vi/aH_yxdoiP6o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mXXc-qjJrDEBaq7J7P1mAs7hXo4w',
     href: 'https://music.youtube.com/watch?v=aH_yxdoiP6o&si=WGNfSwCC0-Vqbmfg'
   },
@@ -161,6 +161,15 @@ const items = [
       opacity: 1;
     }
   }
+
+  @media (max-width: 768px){
+    h1 {
+		  font-size: calc(70/ var(--contet-width) * 100vw);
+	  }
+    .thx{
+		  font-size: calc(30/ var(--contet-width) * 100vw);
+    }
+  }
 </style>
 <script>
   const cover = document.querySelector('.cover') as HTMLDivElement;
@@ -172,6 +181,7 @@ const items = [
   playButton.addEventListener('click', function() {
       if (bgm.paused) {
           bgm.play();
+          bgm.volume = 0.5;
           playButton.setAttribute('data-play', 'true');
           animetionElement.forEach((element) => {
             element.setAttribute('data-state', '');

@@ -29,10 +29,12 @@
     font-size: calc(20/ var(--contet-width) * 100vw);
 }
 
-.play:hover{
-    scale: 1;
-    opacity: 1;
-}
+@media (any-hover: hover) and (any-pointer: fine) {
+    .play:hover{
+      scale: 1;
+      opacity: 1;
+    }
+  }
 [data-play]{
     opacity: .5;
     scale: .8;

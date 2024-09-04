@@ -85,8 +85,18 @@ const {title, img, artist, href } = Astro.props;
   }
 
   @media (max-width: 768px){
-      .link-card{
+    .link-card{
       width: 100vw;
+    }
+    .rank{
+      font-size: calc(64/ var(--contet-width) * 100vw);
+    }
+    .title{
+      font-size: calc(80/ var(--contet-width) * 100vw);
+    }
+    .artist{
+      font-size: calc(64/ var(--contet-width) * 100vw);
+      margin-top: calc(15/ var(--contet-width) * 100vw);
     }
   }
 </style>
