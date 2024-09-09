@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+const {title, items } = Astro.props;
+export interface CardProps {
+	title: string;
+	img: string;
+  artist: string;
+  href: string;
+}
+---
+
+<Layout title={title}>
+	<main style=`--num: ${items.length};`>
+    <div></div>
+    <h1>{title}</h1>
+    <ul class="card-list" data-state="paused">
+      {items.map(({title, artist, img, href}: CardProps) => (
+        <Card title={title} artist={artist} img={img} href={href} />
+      ))}
+    </ul>
+    <strong class="thx" data-state="paused">投票ありがとうございました😁👍</strong>
+    <div class="cover">
+      <audio id="bgm" loop>
+        <source src="/assets/audio/bgm.mp3" type="audio/mp3">
+      </audio>
+      <Button/>
+    </div>
+	</main>
+</Layout>
+
+<style>
+    :root{
+      --contet-width: 1600;
+    }
+  @media (orientation: portrait) {
+    :root{
+      --contet-width: 768;
+    }
+  }
+	main {
+    --time: calc(var(--num) * 12s);
+		margin: auto;
+		padding: 1rem;
+		color: white;
+		font-size: calc(20/ var(--contet-width) * 100vw);
+		line-height: 1.6;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    place-items: center;
+	}
+	h1 {
+		font-size: calc(96/ var(--contet-width) * 100vw);
+		font-weight: 700;
+		text-align: center;
+		margin: 0;
+	}
+  ul{
+    position: fixed;
+    top: 0;
+    right: 0;
+    list-style: '';
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100%;
+    animation: slide var(--time) linear infinite;
+    transform: translateX(0);
+    z-index: 1;
+  }
+  .cover{
+    width: 100%;
+    height: 100%;
+    padding:calc(10/ var(--contet-width) * 100vw);
+  }
+  .thx{
+    animation: thx var(--time) linear;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+  [data-state="paused"] {
+    animation-play-state: paused;
+  }
+
+  @keyframes slide {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes thx {
+    0% {
+      opacity: 0;
+    }
+
+    30% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px){
+    h1 {
+		  font-size: calc(70/ var(--contet-width) * 100vw);
+	  }
+    .thx{
+		  font-size: calc(30/ var(--contet-width) * 100vw);
+    }
+  }
+</style>
+<script>
+  const cover = document.querySelector('.cover') as HTMLDivElement;
+  const bgm = cover.querySelector('#bgm') as HTMLAudioElement;
+  const animetionElement = document.querySelectorAll("[data-state]") as NodeListOf<HTMLElement>;
+
+  const playButton = cover.querySelector('.play') as HTMLButtonElement;
+
+  playButton.addEventListener('click', function() {
+      if (bgm.paused) {
+          bgm.play();
+          bgm.volume = 0.5;
+          playButton.setAttribute('data-play', 'true');
+          animetionElement.forEach((element) => {
+            element.setAttribute('data-state', '');
+          });
+      } else {
+          bgm.pause();
+          playButton.removeAttribute('data-play');
+          animetionElement.forEach((element) => {
+            element.setAttribute('data-state', 'paused');
+          });
+      }
+  });
+</script>
