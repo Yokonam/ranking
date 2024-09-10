@@ -14,7 +14,7 @@ export interface CardProps {
 <Layout title={title}>
 	<main style=`--num: ${items.length};`>
     <div></div>
-    <h1>{title}</h1>
+    <h1 set:html={title}></h1>
     <ul class="card-list" data-state="paused">
       {items.map(({title, artist, img, href}: CardProps) => (
         <Card title={title} artist={artist} img={img} href={href} />
