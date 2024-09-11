@@ -1,0 +1,32 @@
+---
+import LayoutRanking from '../layouts/LayoutRanking.astro';
+
+// 曲の型定義
+interface Song {
+  title: string;
+  artist: string;
+  img: string;
+  href: string;
+}
+
+// データの型定義
+interface PageData {
+  id: string;
+  title: string;
+  items: Song[];
+}
+
+// ディレクトリ内のファイルを動的に読み込む
+export async function getStaticPaths() {
+  const pagesData: PageData[] = await Astro.glob('../data/*.json');
+
+  return pagesData.map(({ id, title, items }) => ({
+    params: { title: `${id}` },
+    props: { id, items, title },
+  }));
+}
+
+const { title, items }: PageData = Astro.props;
+---
+
+<LayoutRanking title={`「${title}」<br>人気曲ランキング`} items={items} />
