@@ -29,4 +29,4 @@ export async function getStaticPaths() {
 const { title, items }: PageData = Astro.props;
 ---
 
-<LayoutRanking title={`「${title}」<br>人気曲ランキング`} items={items} />
+<LayoutRanking title={title} items={items} />
