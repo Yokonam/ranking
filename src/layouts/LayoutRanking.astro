@@ -3,11 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Button from '../components/Button.astro';
 const {title, items } = Astro.props;
-export interface CardProps {
+interface CardProps {
 	title: string;
 	img: string;
   artist: string;
   href: string;
+  rank?: number;
 }
 ---
 
@@ -16,8 +17,8 @@ export interface CardProps {
     <div></div>
     <h1 set:html={title}></h1>
     <ul class="card-list" data-state="paused">
-      {items.map(({title, artist, img, href}: CardProps) => (
-        <Card title={title} artist={artist} img={img} href={href} />
+      {items.map(({title, artist, img, href, rank}: CardProps) => (
+        <Card title={title} artist={artist} img={img} href={href} rank={rank}/>
       ))}
     </ul>
     <strong class="thx" data-state="paused">投票ありがとうございました😁👍</strong>
