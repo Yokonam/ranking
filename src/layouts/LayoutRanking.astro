@@ -35,11 +35,13 @@ interface CardProps {
   :root{
     --contet-width: 1600;
   }
+
   @media (orientation: portrait) {
     :root{
       --contet-width: 768;
     }
   }
+
 	main {
     --time: calc(var(--num) * 12s);
 		margin: auto;
@@ -52,6 +54,7 @@ interface CardProps {
     grid-template-rows: 1fr 1fr 1fr;
     place-items: center;
 	}
+
 	h1 {
 		font-size: calc(96/ var(--contet-width) * 100vw);
 		font-weight: 700;
@@ -59,7 +62,8 @@ interface CardProps {
 		margin: 0;
     word-break: auto-phrase;
 	}
-  ul{
+
+  ul {
     position: fixed;
     top: 0;
     right: 0;
@@ -72,16 +76,19 @@ interface CardProps {
     transform: translateX(0);
     z-index: 1;
   }
+
   .cover{
     width: 100%;
     height: 100%;
     padding:calc(10/ var(--contet-width) * 100vw);
   }
+
   .thx{
     animation: thx var(--time) linear;
     opacity: 0;
     animation-fill-mode: forwards;
   }
+
   [data-state="paused"] {
     animation-play-state: paused;
   }
@@ -118,6 +125,7 @@ interface CardProps {
     h1 {
 		  font-size: calc(70/ var(--contet-width) * 100vw);
 	  }
+
     .thx{
 		  font-size: calc(30/ var(--contet-width) * 100vw);
     }
@@ -131,19 +139,19 @@ interface CardProps {
   const playButton = cover.querySelector('.play') as HTMLButtonElement;
 
   playButton.addEventListener('click', function() {
-      if (bgm.paused) {
-          bgm.play();
-          bgm.volume = 0.5;
-          playButton.setAttribute('data-play', 'true');
-          animetionElement.forEach((element) => {
-            element.setAttribute('data-state', '');
-          });
-      } else {
-          bgm.pause();
-          playButton.removeAttribute('data-play');
-          animetionElement.forEach((element) => {
-            element.setAttribute('data-state', 'paused');
-          });
-      }
+    if (bgm.paused) {
+      bgm.play();
+      bgm.volume = 0.5;
+      playButton.setAttribute('data-play', 'true');
+      animetionElement.forEach((element) => {
+        element.setAttribute('data-state', '');
+      });
+    } else {
+      bgm.pause();
+      playButton.removeAttribute('data-play');
+      animetionElement.forEach((element) => {
+        element.setAttribute('data-state', 'paused');
+      });
+    }
   });
 </script>
