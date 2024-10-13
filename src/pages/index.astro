@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const allPages = await Astro.glob('../data/*.json');
+const pagesData = await Astro.glob('../data/*.json');
 ---
 
 <Layout title="ランキング">
     <h1>ランキング</h1>
     <ul>
-        {allPages.map(({title, id}) => <li><a href={id}>{title}</a></li>)}
+        {pagesData.map(({title, id}) => <li><a href={id}>{title}</a></li>)}
     </ul>
 </Layout>
 
