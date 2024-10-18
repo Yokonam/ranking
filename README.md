@@ -23,9 +23,15 @@
 
 ```json
 {
-  "artist": "アーティスト名",
-  "title": "曲名",
-  "thumbnail": "サムネイル画像のURL",
-  "link": "曲のリンクURL"
+  "id": "ページのID",
+  "title": "ページの名前",
+  "items": [
+    {
+      "title": "曲名",
+      "artist": "アーティスト名",
+      "img": "サムネイル画像のURL",
+      "href": "曲のリンクURL"
+    }
+  ]
 }
 ```
